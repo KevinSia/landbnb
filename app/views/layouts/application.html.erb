@@ -7,7 +7,25 @@
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
+		<nav>
+			<h2><%= link_to 'LandBnB', root_path %></h2>
+			<ul>
+				<% if signed_in? %>
+	      	<li>Signed in as: <%= current_user.first_name %></li>
+	      	<li><%= button_to 'Sign out', sign_out_path, method: :delete %></li>
+		    <% else %>
+		      <li><%= link_to 'Log in', log_in_path %></li>
+		      <li><%= link_to 'Sign up', sign_up_path %></li>
+		      <li><a href="#">About</a></li>
+		    <% end %>
+	    </ul>
+		</nav>
 		<div id="container">
+    	<div id="flash">
+	      <% flash.each do |key, value| %>
+	        <div class="flash <%= key %>"><%= value %></div>
+	      <% end %>
+  	  </div>
 			<%= yield %>
 		</div>
 	</body>
