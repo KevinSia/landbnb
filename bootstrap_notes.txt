@@ -1,0 +1,3 @@
+.nav -> removes the bullets
+.navbar-nav -> aligns the unordered list horizontally
+.navbar-right -> pushes the li's to the right of the navbar

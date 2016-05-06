@@ -1,38 +1,32 @@
 <div class="text-field">
-  <%= form.label :email, "Email: " %>
-  <%= form.text_field :email, type: 'email', placeholder: 'Your email', required: true %>
+  <%= form.text_field :email, type: 'email', placeholder: 'Your email', required: true%>
 </div>
 
 <div class="password-field">
-  <%= form.label :password, "Password: " %>
-  <%= form.password_field :password, placeholder: 'Your password', required: true %>
+  <%= form.password_field :password, placeholder: 'Your password'%>
 </div>
 
 <div>
-<%= form.label :first_name, "First Name: " %>
 <%= form.text_field :first_name, placeholder: 'Your first name', required: true %>
 </div>
 
 <div>
-<%= form.label :last_name, "Last Name: " %>
 <%= form.text_field :last_name, placeholder: 'Your last name', required: true %>
 </div>
 
 <div>
-	<%= form.label :gender, "Gender: " %>
+
 	<%= form.select :gender, [['Male', 'male'], ['Female', 'female']], width: '20' %>
 </div>
 
 <div>
-	 <%= form.label :country, "Country: " %>
-	 <%= form.country_select :country, priority_countries: ["Malaysia"] %>
-</div>
-<div>
-<%= form.label :phone_number, "Phone Number: " %>
-<%= form.text_field :phone_number, placeholder: 'Your phone number' %>
+<%= form.label :country %>
+<%= form.country_select(:country, {priority_countries: ["Malaysia"]}, {class: 'form-control'}) %>
 </div>
 
-<%= form.label :description, "Description: " %><br>
+<div>
+<%= form.text_field :phone_number, placeholder: 'Your phone number' %>
+</div>
 <%= form.text_area :description, placeholder: 'Tell us a little about you! (max. 140 character)', maxlength: 140, size: "30x5" %>
 
 
