@@ -1,23 +1,27 @@
 Rails.application.routes.draw do
+
+
+  root 'static#home'
+  get "/sign_in" => "clearance/sessions#new", as: "sign_in"
+  get "/sign_up" => "clearance/users#new", as: "sign_up"
+  delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
+  get '/about' => "static#about"
+  get "/auth/:provider/callback" => "sessions#create_user_from_omniauth"
+
+
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
   # overring clearance::userscontroller
-  resources :users, controller: "users", only: [:create, :show] do
+  resources :users, controller: "users", only: [:create, :show, :edit, :update] do
+    resources :listings, except: [:show]
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
   end
 
-  get "/sign_in" => "clearance/sessions#new", as: "sign_in"
-  delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
-  get "/sign_up" => "clearance/users#new", as: "sign_up"
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  resources :listings, only: [:show]
 
-  # You can have the root of your site routed with "root"
-  root 'static#home'
-  get '/about' => "static#about"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

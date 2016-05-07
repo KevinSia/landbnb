@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>Landbnb</title>
+	  <title>LandBnB</title>
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
-		<nav>
-			<h2><%= link_to 'LandBnB', root_path %></h2>
-			<ul>
-				<% if signed_in? %>
-	      	<li><%= link_to "#{current_user.first_name}", user_path(current_user) %></li>
-	      	<li><%= button_to 'Sign out', sign_out_path, method: :delete %></li>
-		    <% else %>
-		      <li><%= link_to 'Log in', sign_in_path %></li>
-		      <li><%= link_to 'Sign up', sign_up_path %></li>
-		      <li><a href="/about">About</a></li>
-		    <% end %>
-	    </ul>
-		</nav>
-		<div id="container">
-    	<div id="flash">
-	      <% flash.each do |key, value| %>
-	        <div class="flash <%= key %>"><%= value %></div>
-	      <% end %>
-  	  </div>
-			<%= yield %>
-		</div>
+		<header class='navbar navbar-default'>
+			<div class='container'>
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <%= link_to 'LandBnB', root_path, class:'navbar-brand' %>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+					<ul class='nav navbar-nav navbar-right'>
+						<% if signed_in? %>
+			      	<li class='dropdown'><%= link_to 'My Listings', user_listings_path(current_user) %></li>
+			      	<li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.first_name.capitalize %>
+				        <span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				          <li><%= link_to 'Show my profile', user_path(current_user) %></li>
+				          <li><%= link_to 'Sign out', sign_out_path , method: :delete %></li>
+				        </ul>
+				      </li>
+				    <% else %>
+				      <li><%= link_to raw("<span class='glyphicon glyphicon-log-in'></span> Log in"), sign_in_path %></li>
+				      <li><%= link_to raw("<span class='glyphicon glyphicon-user'></span> </span>Sign up"), sign_up_path %></li>
+				    <% end %>
+			    </ul>
+			  </div>
+			</div>
+		</header>
+  	<div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+	  </div>
+		<%= yield %>
+		<footer>
+			<p class='text-center'>A website made with &#9829;</p>
+		</footer>
 	</body>
 </html>

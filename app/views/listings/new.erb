@@ -1,0 +1,24 @@
+<h1 class='text-center'>New listing</h1>
+<div class='container'>
+	<div class='col-md-10 col-md-offset-1'>
+	 <%= simple_form_for [current_user, @listing] do |f| %>
+			<%= f.input :country, label: "Country", collection: CountryStateSelect.countries_collection %>
+
+	    <%= f.input :state, CountryStateSelect.state_options(label: "State / Province", form: f, field_names: { :country => :country, :state => :home_state }), as: :select %>
+
+	    <%= f.input :city, CountryStateSelect.city_options(label: "City ", form: f, field_names: {  :state => :state, :city => :home_city } ) %>
+
+	    <%= f.input :address %>
+
+	    <%= f.input :home_type, collection: Listing::HOME_TYPE %>
+
+	    <%= f.input :room_type, collection: Listing::ROOM_TYPE %>
+
+	    <%= f.input :guest_number, collection: ((1..15).map {|x| [x,x] } + [['16 or more', 16]]) %>
+
+	    <%= f.input :price_per_night %>
+
+	    <%= f.button :submit, 'To space!' %>
+		<% end %>
+	</div>
+</div>
