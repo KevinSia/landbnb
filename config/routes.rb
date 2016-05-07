@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root 'static#home'
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
@@ -13,10 +14,13 @@ Rails.application.routes.draw do
 
   # overring clearance::userscontroller
   resources :users, controller: "users", only: [:create, :show, :edit, :update] do
+    resources :listings, except: [:show]
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
   end
+
+  resources :listings, only: [:show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

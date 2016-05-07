@@ -1,6 +1,6 @@
-<%= bootstrap_form_for :session, url: session_path do |form| %>
+<%= simple_form_for :session, url: session_path do |form| %>
   <div class="text-field">
-    <%= form.text_field :email, type: 'email', placeholder: 'Your email' %>
+    <%= form.text_field :email, type: 'email', placeholder: 'Your email', required: true %>
   </div>
 
   <div class="password-field">

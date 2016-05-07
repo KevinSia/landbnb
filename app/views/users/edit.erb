@@ -1,7 +1,7 @@
 <div id='clearance'>
 	<div class='container'>
 	<h2>Edit profile</h2>
-	<%= bootstrap_form_for @user do |form| %>
+	<%= simple_form_for @user, html: { class: '.form-inline' } do |form| %>
 		<%= render partial: '/users/form', object: form %>
 
     <div class="submit-field">

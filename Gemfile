@@ -20,12 +20,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate'
-gem 'country_select'
+
+gem 'country_state_select', '3.0.1'
 
 gem 'slim-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
-gem 'bootstrap_form'
 
 # application.yml
 gem 'figaro'
