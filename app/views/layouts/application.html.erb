@@ -7,7 +7,7 @@
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
-		<header class='navbar navbar-default'>
+		<header class='main-navbar navbar navbar-default'>
 			<div class='container'>
 		    <div class="navbar-header">
 		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -20,12 +20,13 @@
 		    <div class="collapse navbar-collapse" id="myNavbar">
 					<ul class='nav navbar-nav navbar-right'>
 						<% if signed_in? %>
-			      	<li class='dropdown'><%= link_to 'My Listings', user_listings_path(current_user) %></li>
+							<li><%= link_to 'Create new listing', new_user_listing_path(current_user) %></li>
+			      	<li><%= link_to 'My Listings', user_listings_path(current_user) %></li>
 			      	<li class="dropdown">
 				        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.first_name.capitalize %>
 				        <span class="caret"></span></a>
 				        <ul class="dropdown-menu">
-				          <li><%= link_to 'Show my profile', user_path(current_user) %></li>
+				          <li><%= link_to 'Your profile', user_path(current_user) %></li>
 				          <li><%= link_to 'Sign out', sign_out_path , method: :delete %></li>
 				        </ul>
 				      </li>
@@ -43,8 +44,9 @@
       <% end %>
 	  </div>
 		<%= yield %>
-		<footer>
+		<footer class='row'>
 			<p class='text-center'>A website made with &#9829;</p>
 		</footer>
+		<%= console %>
 	</body>
 </html>

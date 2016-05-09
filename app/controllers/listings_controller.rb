@@ -1,10 +1,9 @@
 class ListingsController < ApplicationController
 
-  before_action :find_and_check_user, except: [:index, :show]
+  before_action :find_and_check_user, except: [:show]
   before_action :find_listing, only: [:show, :edit, :update, :destroy]
 
   def index
-    @user = User.find(params[:user_id])
     @listings = @user.listings
   end
 
@@ -22,7 +21,7 @@ class ListingsController < ApplicationController
     @listing = @user.listings.new(listing_params)
 
     if @listing.save
-      redirect_to @listing # redirect_to @listing
+      redirect_to user_listing_path(@listing)
     else
       flash[:warning] = "Invalid input(s)"
       render :new
@@ -31,7 +30,7 @@ class ListingsController < ApplicationController
 
   def update
     if @listing.update(listing_params)
-      redirect_to @listing
+      redirect_to user_listing_path(current_user, @listing)
     else
       flash[:warning] = "Invalid input(s)"
       render :edit
@@ -58,6 +57,6 @@ class ListingsController < ApplicationController
 
   def listing_params
     params.require(:listing).permit(:country, :state, :city, :home_type, :room_type, :address,
-                                    :guest_number, :price_per_night)
+                                    :guest_number, :price_per_night, :title, :description)
   end
 end
