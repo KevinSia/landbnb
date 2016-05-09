@@ -1,0 +1,2 @@
+- make dashboard layout
+- drop country state gem and use geocoder instead

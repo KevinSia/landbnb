@@ -1,0 +1,12 @@
+<h2 class='text-center'>Your listings</h2>
+
+<% @listings.each do |l| %>
+	<div class='row'>
+		<div class='col-md-10 col-md-offset-1 text-center'>
+			Title: <%= l.title %>
+			Updated on: <%= l.updated_at %>
+			<%= link_to 'Show this listing', user_listing_path(current_user, l) %>
+			<%= link_to 'Edit this listing', edit_user_listing_path(current_user, l) %>
+		</div>
+	</div>
+<% end %>

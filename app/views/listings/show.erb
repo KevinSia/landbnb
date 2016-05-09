@@ -1,13 +1,44 @@
+<h2 class='text-center'><%= @listing.title || 'No title given' %></h2>
 <div class="container text-center">
 	<div class='col-md-10 col-md-offset-1 text-left'>
-		Country:<%= @listing.country %><br>
-		State:<%= @listing.state %><br>
-		City:<%= @listing.city %><br>
-		Address:<%= @listing.address %><br>
-		Room Type:<%= @listing.room_type %><br>
-		Home Type:<%= @listing.home_type %><br>
-		Guest Number:<%= @listing.guest_number %> pax<br>
-		Price per night: RM<%= @listing.price_per_night %>
+		<table>
+			<tr>
+				<th> Country </th>
+				<td>: <%= @listing.country %></td>
+			</tr>
+			<tr>
+				<th> State </th>
+				<td>: <%= @listing.state %></td>
+			</tr>
+			<tr>
+				<th> City </th>
+				<td>: <%= @listing.city %></td>
+			</tr>
+			<tr>
+				<th> Address </th>
+				<td>: <%= @listing.address %></td>
+			</tr>
+			<tr>
+				<th> Room type </th>
+				<td>: <%= @listing.room_type %></td>
+			</tr>
+			<tr>
+				<th> Home type </th>
+				<td>: <%= @listing.home_type %></td>
+			</tr>
+			<tr>
+				<th> Allowed guest number </th>
+				<td>: <%= @listing.guest_number %> pax</td>
+			</tr>
+			<tr>
+				<th> Price per night </th>
+				<td>: RM<%= @listing.price_per_night %></td>
+			</tr>
+			<tr>
+				<th> Description </th>
+				<td>: <%= @listing.description %></td>
+			</tr>
+		</table>
+		<%= link_to 'Edit this listing', edit_user_listing_path(current_user, @listing) %>
 	</div>
-	<div class="col-md-offset-1"></div>
 </div>

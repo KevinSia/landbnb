@@ -12,10 +12,17 @@ html, body {
   height: 100%;
 }
 
+
+#dashboard-nav {
+    .navbar {
+        background-color: #565a5c !important;
+    }
+}
+
+/* color: #f4511e */
 .navbar {
     margin-bottom: 0;
     background-color: #f4511e;
-    z-index: 9999;
     border: 0;
     font-size: 15px !important;
     line-height: 1.42857143 !important;
@@ -26,7 +33,7 @@ html, body {
     color: #fff !important;
 }
 
-.navbar-nav li a:hover, .navbar-nav li.active a {
+.navbar-nav li a:hover, .s-nav li.active a {
     color: #f4511e !important;
     background-color: #fff !important;
 }

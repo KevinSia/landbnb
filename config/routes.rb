@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get '/about' => "static#about"
+  get '/dashboard' => "static#dashboard"
   get "/auth/:provider/callback" => "sessions#create_user_from_omniauth"
 
 
@@ -14,13 +15,11 @@ Rails.application.routes.draw do
 
   # overring clearance::userscontroller
   resources :users, controller: "users", only: [:create, :show, :edit, :update] do
-    resources :listings, except: [:show]
+    resources :listings
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
   end
-
-  resources :listings, only: [:show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

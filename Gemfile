@@ -21,6 +21,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate'
 
+# not friendly with simple_form bootstrap setting
+# changing to geocoder soon
 gem 'country_state_select', '3.0.1'
 
 gem 'slim-rails'
@@ -35,6 +37,10 @@ gem 'clearance'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+# image upload
+gem 'carrierwave'
+gem 'mini_magick'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -46,5 +52,6 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'fog'
 end
 
