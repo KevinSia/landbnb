@@ -1,5 +1,7 @@
 class Listing < ActiveRecord::Base
   belongs_to :user
+  has_many :listing_tags
+  has_many :tags, through: :listing_tags
 
   HOME_TYPE = [
     ['Apartment', '0'],
@@ -25,5 +27,16 @@ class Listing < ActiveRecord::Base
     'Shared room': '2'
   }
 
+  def tags_list=(tags)
+    self.tags = tags.split(',').map { |tag| Tag.find_or_create_by(name: tag.strip.downcase) }
+  end
+
+  def tags_list
+    tags.map(&:name).join(', ')
+  end
+
+  def self.tagged_with(tag_name)
+    @tag = Tag.find_by_name!(tag_name).listings
+  end
 
 end

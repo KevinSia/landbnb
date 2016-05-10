@@ -7,6 +7,7 @@
 <%= f.input :room_type, collection: Listing::ROOM_TYPE, selected: f.object.room_type, prompt: 'Select room type' %>
 <%= f.input :guest_number, collection: ((1..15).map {|x| [x,x] } + [['16 or more', 16]]) %>
 <%= f.input :price_per_night %>
+<%= f.input :tags_list, placeholder: 'Tags seperated by comma' %>
 <%= f.input :description %>
 
 <%= f.button :submit, 'To space!' %>
