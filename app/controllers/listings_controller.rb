@@ -21,7 +21,7 @@ class ListingsController < ApplicationController
     @listing = @user.listings.new(listing_params)
 
     if @listing.save
-      redirect_to user_listing_path(@listing)
+      redirect_to user_listing_path(current_user, @listing)
     else
       flash[:warning] = "Invalid input(s)"
       render :new
@@ -57,6 +57,6 @@ class ListingsController < ApplicationController
 
   def listing_params
     params.require(:listing).permit(:country, :state, :city, :home_type, :room_type, :address,
-                                    :guest_number, :price_per_night, :title, :description)
+                                    :guest_number, :price_per_night, :title, :description, :tags_list)
   end
 end

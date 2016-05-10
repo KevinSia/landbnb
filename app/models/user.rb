@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   def self.create_with_auth_and_hash(authentication, auth_hash)
     # authentication(variable) is authentication object
     create! do |user|
-      user.first_name = auth_hash['info']['first_name']
-      user.last_name = auth_hash['info']['last_name']
+      user.first_name = auth_hash['info']['first_name'] || 'first_name'
+      user.last_name = auth_hash['info']['last_name'] || 'last_name'
       user.email = auth_hash['extra']['raw_info']['email']
       user.gender = auth_hash['extra']['raw_info']['gender']
       user.encrypted_password = user.new_token

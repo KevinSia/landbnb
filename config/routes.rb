@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get '/about' => "static#about"
   get '/dashboard' => "static#dashboard"
+  get '/tag/:tag' => "static#tag", as: "tag"
   get "/auth/:provider/callback" => "sessions#create_user_from_omniauth"
 
 

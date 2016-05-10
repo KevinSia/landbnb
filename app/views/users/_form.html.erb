@@ -1,33 +1,31 @@
 <div class="text-field">
-  <%= form.text_field :email, type: 'email', placeholder: 'Your email', required: true%>
+  <%= form.input :email, placeholder: 'Your email', required: true %>
 </div>
 
 <div class="password-field">
-  <%= form.password_field :password, placeholder: 'Your password'%>
+  <%= form.input :password, placeholder: 'Your password'%>
 </div>
 
 <div>
-<%= form.text_field :first_name, placeholder: 'Your first name', required: true %>
+<%= form.input :first_name, placeholder: 'Your first name', required: true %>
 </div>
 
 <div>
-<%= form.text_field :last_name, placeholder: 'Your last name', required: true %>
+<%= form.input :last_name, placeholder: 'Your last name', required: true %>
 </div>
 
 <div>
 
-	<%= form.select :gender, [['Male', 'male'], ['Female', 'female']], width: '20' %>
+	<%= form.input :gender, collection: [['Male', 'male'], ['Female', 'female']]%>
 </div>
 
 <div>
-<%= form.label :country %>
-<%= form.country_select(:country, {priority_countries: ["Malaysia"]}, {class: 'form-control'}) %>
 </div>
 
 <div>
-<%= form.text_field :phone_number, placeholder: 'Your phone number' %>
+<%= form.input :phone_number, placeholder: 'Your phone number' %>
 </div>
-<%= form.text_area :description, placeholder: 'Tell us a little about you! (max. 140 character)', maxlength: 140, size: "30x5" %>
+<%= form.input :description, placeholder: 'Tell us a little about you! (max. 140 character)', maxlength: 140, size: "30x5" %>
 
 
 
