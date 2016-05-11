@@ -1,3 +1,4 @@
+<%= f.error_notification %>
 <%= f.input :title %>
 <%= f.input :country, label: "Country", collection: CountryStateSelect.countries_collection %>
 <%= f.input :state, CountryStateSelect.state_options(label: "State / Province", form: f, field_names: { :country => :country, :state => :home_state }) %>
