@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   scope module: 'user' do
     resources :users, controller: "users", only: [:create, :show, :edit, :update] do
       resources :listings, controller: 'listings'
+      resources :reservations, except: [:new, :create]
       resource :password,
         controller: "clearance/passwords",
         only: [:create, :edit, :update]
@@ -25,7 +26,9 @@ Rails.application.routes.draw do
   end
 
   scope module: 'public' do
-    resources :listings, only: [:index, :show]
+    resources :listings, only: [:index, :show] do
+      resources :reservations, only: :create
+    end
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
