@@ -3,11 +3,14 @@
 <%= f.input :state, CountryStateSelect.state_options(label: "State / Province", form: f, field_names: { :country => :country, :state => :home_state }) %>
 <%= f.input :city, CountryStateSelect.city_options(label: "City ", form: f, field_names: {  :state => :state, :city => :home_city } ) %>
 <%= f.input :address %>
-<%= f.input :home_type, collection: Listing::HOME_TYPE, selected: f.object.home_type, prompt: 'Select home type' %>
-<%= f.input :room_type, collection: Listing::ROOM_TYPE, selected: f.object.room_type, prompt: 'Select room type' %>
-<%= f.input :guest_number, collection: ((1..15).map {|x| [x,x] } + [['16 or more', 16]]) %>
+<%= f.input :home_type, collection: Listing::HOME_TYPE, selected: Listing.home_types[f.object.home_type], prompt: 'Select home type' %>
+<%= f.input :room_type, collection: Listing::ROOM_TYPE, selected: Listing.room_types[f.object.room_type], prompt: 'Select room type' %>
+<%= f.input :guest_number, collection: ((1..15).map { |x| [x,x] } + [['16 or more', 16]]) %>
 <%= f.input :price_per_night %>
 <%= f.input :tags_list, placeholder: 'Tags seperated by comma' %>
+<%= f.input :images do %>
+	<%= f.file_field :images, multiple: true, class: 'form-control' %>
+<% end %>
 <%= f.input :description %>
 
 <%= f.button :submit, 'To space!' %>

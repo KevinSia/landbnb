@@ -1,4 +1,7 @@
 class Listing < ActiveRecord::Base
+
+  mount_uploaders :images, ImagesUploader
+
   belongs_to :user
   has_many :listing_tags
   has_many :tags, through: :listing_tags

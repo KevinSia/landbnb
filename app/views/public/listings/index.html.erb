@@ -1,0 +1,19 @@
+<h2 class='text-center'>Showing all listings</h2>
+
+<% unless @listings.empty? %>
+	<% @listings.each do |l| %>
+		<div class='row'>
+			<div class='col-md-10 col-md-offset-1 text-center'>
+				Title: <%= l.title %>
+				Updated on: <%= l.updated_at %>
+				Tags: <%= raw tag_links(l.tags_list) %><br>
+				<%= link_to 'Show this listing', listing_path(l) %>
+			</div>
+		</div>
+	<% end %>
+<% else %>
+	<div class='col-md-10 col-md-offset-1 text-center'>
+		<p>There currently are no listings available yet :(</p>
+		<p><%= link_to 'Make one now', new_user_listing_path(current_user) %></p>
+	</div>
+<% end %>

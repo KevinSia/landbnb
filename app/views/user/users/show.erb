@@ -1,0 +1,19 @@
+<div class="container well well-lg text-center" style='margin-top: 10px;' id='profile_page'>
+		<h2>Your profile</h2>
+		<div class='col-md-4 col-md-offset-1'>
+			<%= image_tag @user.avatar %>
+		</div>
+		<div class='col-md-7'>
+			<ul>
+				<li>First Name: <%= @user.first_name %></li>
+				<li>Last Name: <%= @user.last_name %></li>
+				<li>Email: <%= @user.email %></li>
+				<li>Gender: <%= @user.gender %></li>
+				<li>Phone Number: <%= @user.phone_number %></li>
+				<li>Joined at: <%= @user.created_at.strftime("%m/%d/%Y")%></li>
+				<li>Description: <%= @user.description %></li>
+			</ul>
+			<%= link_to 'Edit profile', edit_user_path(@user), class: 'btn btn-default' %>
+		</div>
+	</div>
+</div>

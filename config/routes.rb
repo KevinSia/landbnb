@@ -15,13 +15,18 @@ Rails.application.routes.draw do
   resource :session, controller: "clearance/sessions", only: [:create]
 
   # overring clearance::userscontroller
-  resources :users, controller: "users", only: [:create, :show, :edit, :update] do
-    resources :listings
-    resource :password,
-      controller: "clearance/passwords",
-      only: [:create, :edit, :update]
+  scope module: 'user' do
+    resources :users, controller: "users", only: [:create, :show, :edit, :update] do
+      resources :listings, controller: 'listings'
+      resource :password,
+        controller: "clearance/passwords",
+        only: [:create, :edit, :update]
+    end
   end
 
+  scope module: 'public' do
+    resources :listings, only: [:index, :show]
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
