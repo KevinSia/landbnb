@@ -1,4 +1,4 @@
-class ListingsController < ApplicationController
+class User::ListingsController < ApplicationController
 
   before_action :find_and_check_user, except: [:show]
   before_action :find_listing, only: [:show, :edit, :update, :destroy]
@@ -10,11 +10,7 @@ class ListingsController < ApplicationController
   def show
   end
 
-  def edit
-  end
-
   def new
-    @listing = Listing.new
   end
 
   def create
@@ -26,6 +22,9 @@ class ListingsController < ApplicationController
       flash[:warning] = "Invalid input(s)"
       render :new
     end
+  end
+
+  def edit
   end
 
   def update
@@ -57,6 +56,7 @@ class ListingsController < ApplicationController
 
   def listing_params
     params.require(:listing).permit(:country, :state, :city, :home_type, :room_type, :address,
-                                    :guest_number, :price_per_night, :title, :description, :tags_list)
+                                    :guest_number, :price_per_night, :title, :description, :tags_list,
+                                    { images: [] })
   end
 end

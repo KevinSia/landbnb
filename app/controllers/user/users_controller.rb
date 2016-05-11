@@ -1,4 +1,4 @@
-class UsersController < Clearance::UsersController
+class User::UsersController < Clearance::UsersController
 
   before_action :require_login, except: [:create]
   before_action :check_user, only: [:edit, :update]
@@ -48,7 +48,7 @@ class UsersController < Clearance::UsersController
 
   def permit_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :gender, :description,
-      :country, :phone_number)
+      :country, :phone_number, :avatar)
   end
 
   def check_user
