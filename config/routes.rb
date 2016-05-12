@@ -23,7 +23,7 @@ Rails.application.routes.draw do
         controller: "clearance/passwords",
         only: [:create, :edit, :update]
     end
-    get '/mylistings/:id/reservations/:reservation_id' => "user/listings#show_reservation"
+    get '/mylistings/:id/reservations/:reservation_id' => "listings#show_reservation"
   end
 
   scope module: 'public' do

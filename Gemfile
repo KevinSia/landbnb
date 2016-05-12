@@ -25,7 +25,7 @@ gem 'will_paginate'
 # changing to geocoder soon
 gem 'country_state_select', '3.0.1'
 
-gem 'slim-rails'
+# gem 'slim-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 
@@ -47,6 +47,8 @@ gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'launchy'
+  gem 'letter_opener'
   gem 'byebug'
   gem 'rspec'
 end

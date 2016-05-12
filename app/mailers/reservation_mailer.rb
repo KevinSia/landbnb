@@ -4,7 +4,7 @@ class ReservationMailer < ApplicationMailer
     # host -> host object
     @customer = customer
     listing_id = Reservation.find(reservation_id).listing_id
-    @url = 'http://localhost:3000/mylistings/listing_id/reservations/reservation_id'
+    @url = "http://localhost:3000/mylistings/#{listing_id}/reservations/#{reservation_id}"
     mail(to: host.email, subject: 'You received a booking!')
   end
 end

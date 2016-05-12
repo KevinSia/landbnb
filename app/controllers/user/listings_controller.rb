@@ -1,6 +1,6 @@
 class User::ListingsController < ApplicationController
 
-  before_action :find_and_check_user, except: [:show]
+  before_action :find_and_check_user, except: [:show, :show_reservation]
   before_action :find_listing, except: [:index, :new]
 
   def show_reservation
