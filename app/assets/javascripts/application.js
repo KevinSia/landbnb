@@ -17,3 +17,6 @@
 //= require bootstrap-sprockets
 //= require chosen-jquery
 //= require country_state_select
+//= require moment
+//= require daterangepicker
+

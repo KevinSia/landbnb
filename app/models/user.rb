@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :authentications, dependent: :destroy
   has_many :listings, dependent: :destroy
+  has_many :reservations, dependent: :destroy
 
   validates :description, length: { maximum: 140 }
 
