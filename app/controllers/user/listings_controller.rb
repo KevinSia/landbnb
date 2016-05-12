@@ -1,7 +1,11 @@
 class User::ListingsController < ApplicationController
 
   before_action :find_and_check_user, except: [:show]
-  before_action :find_listing, only: [:show, :edit, :update, :destroy]
+  before_action :find_listing, except: [:index, :new]
+
+  def show_reservation
+    @reservation = Reservation.find(params[:reservation_id])
+  end
 
   def index
     @listings = @user.listings

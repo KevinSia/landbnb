@@ -17,7 +17,7 @@ class Reservation < ActiveRecord::Base
   end
 
   def date_diff
-    (check_out_date - check_in_date + 1).to_i
+    (check_out_date - check_in_date).to_i
   end
 
   def pax=(pax)
