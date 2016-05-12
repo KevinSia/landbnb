@@ -1,0 +1,33 @@
+<div class="container">
+	<h2>Your reservations</h2>
+	<table>
+		<% @reservations.each do |r| %>
+			<tr>
+				<th>Listing </th>
+				<td>: <%= r.listing.title %></td>
+			</tr>
+			<tr>
+				<th>Check In Date </th>
+				<td>: <%= r.check_in_date %></td>
+			</tr>
+			<tr>
+				<th>Check Out Date </th>
+				<td>: <%= r.check_out_date %></td>
+			</tr>
+			<tr>
+				<th>Pax </th>
+				<td>: <%= r.pax %></td>
+			</tr>
+			<tr>
+				<th>Price </th>
+				<td>: <%= r.price %></td>
+			</tr>
+			<tr>
+				<td><%= link_to 'Show', user_reservation_path(current_user, r) %>
+				| <%= link_to 'Edit', edit_user_reservation_path(current_user, r) %>
+				| <%= link_to 'Destroy', user_reservation_path(current_user, r), method: :delete,
+				data: { confirm: 'Are you sure?' } %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>

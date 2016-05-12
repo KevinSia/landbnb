@@ -1,5 +1,17 @@
+<% if @reservation && @reservation.errors.any? %>
+<div id="error_explanation">
+		<div class="alert alert-danger">
+			The form contains <%= pluralize(@reservation.errors.count, "error") %>.
+		</div>
+		<ul>
+			<% @reservation.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
 <h2 class='text-center'><%= @listing.title || 'No title given' %></h2>
-<div class="container text-center well well-lg">
+<div class="container text-center well well-lg listing-show">
 	<div class='col-md-10 col-md-offset-1 text-left'>
 		<table>
 			<tr>
@@ -46,8 +58,8 @@
 				<th> Images </th><br>
 			</tr>
 			<tr>
-				<td>
 				<% if images = @listing.images %>
+				<td>
 					<% @listing.images.each do |image| %>
 						<%= image_tag(image.url) %>
 					<% end %>
@@ -57,12 +69,12 @@
 				<% end %>
 			</tr>
 		</table>
-		<h2>BOOK NAO !!</h2>
+		<h2>BOOK NAOOOO !!</h2>
 		<%= simple_form_for [@listing, Reservation.new] do |f| %>
 			<%= f.input :listing_id, as: :hidden, input_html: { value: @listing.id } %>
-			<%= f.input :user_id, as: :hidden, input_html: { value: current_user } %>
-			<%= f.input :dates, as: :string,  input_html: { class: "daterange" } %>
-			<%= f.input :pax, collection: 1..@listing.guest_number %>
+			<%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+			<%= f.input :dates, label: 'Booking date', as: :string,  input_html: { class: "daterange" } %>
+			<%= f.input :pax, collection: 1..@listing.guest_number, selected: 1 %>
 			<p><strong>Price</strong>: RM<span class='book_price' id='<%= @listing.price_per_night %>'></span></p>
 			<%= f.button :submit, 'Book Nao', style: "display:inline; width: 100px;" %>
 		<% end %>

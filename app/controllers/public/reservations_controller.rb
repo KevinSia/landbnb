@@ -1,11 +1,18 @@
 class Public::ReservationsController < ApplicationController
   def create
-    byebug
+    @listing = Listing.find(reservation_params[:listing_id])
+    @reservation = Reservation.new(reservation_params)
+    if @reservation.save
+      flash[:success] = 'Reservation has been made'
+      redirect_to user_reservations_path(current_user)
+    else
+      render 'public/listings/show'
+    end
   end
 
   private
 
-  def reservations_params
-    params.require(:reservation).permit(:listing_id, :user_id, :dates)
+  def reservation_params
+    params.require(:reservation).permit(:listing_id, :user_id, :dates, :pax)
   end
 end
