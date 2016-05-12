@@ -37,6 +37,10 @@ gem 'clearance'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+# datepicker
+gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
+
 # image upload
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'

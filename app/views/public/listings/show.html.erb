@@ -57,5 +57,14 @@
 				<% end %>
 			</tr>
 		</table>
+		<h2>BOOK NAO !!</h2>
+		<%= simple_form_for [@listing, Reservation.new] do |f| %>
+			<%= f.input :listing_id, as: :hidden, input_html: { value: @listing.id } %>
+			<%= f.input :user_id, as: :hidden, input_html: { value: current_user } %>
+			<%= f.input :dates, as: :string,  input_html: { class: "daterange" } %>
+			<%= f.input :pax, collection: 1..@listing.guest_number %>
+			<p><strong>Price</strong>: RM<span class='book_price' id='<%= @listing.price_per_night %>'></span></p>
+			<%= f.button :submit, 'Book Nao', style: "display:inline; width: 100px;" %>
+		<% end %>
 	</div>
 </div>

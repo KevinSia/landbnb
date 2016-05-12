@@ -138,3 +138,7 @@ footer {
     font-weight:bold;
 }
 /* sign in page end */
+
+.daterangepicker td.disabled, .daterangepicker option.disabled {
+    background-color: gainsboro;
+}

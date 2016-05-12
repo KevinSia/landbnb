@@ -4,4 +4,7 @@ class Reservation < ActiveRecord::Base
 
   validates :listing_id, presence: true
   validates :user_id, presence: true
+
+  def dates
+  end
 end
