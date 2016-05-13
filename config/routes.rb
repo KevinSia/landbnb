@@ -28,9 +28,15 @@ Rails.application.routes.draw do
 
   scope module: 'public' do
     resources :listings, only: [:index, :show] do
-      resources :reservations, only: :create
+      resources :reservations, only: :create do
+      end
+    end
+
+    resources :reservations, only: [] do
+      resources :payments, only: [:create, :new]
     end
   end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,6 +1,7 @@
 class User::ReservationsController < ApplicationController
 
   before_action :find_reservation, except: :index
+
   def index
     @reservations = Reservation.all
   end

@@ -1,6 +1,8 @@
 class Reservation < ActiveRecord::Base
   belongs_to :listing
   belongs_to :user
+  has_one :payment
+  has_one :paid_users, through: :payment
 
   validates :listing_id, presence: true
   validates :user_id, presence: true

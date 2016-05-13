@@ -45,6 +45,9 @@ gem 'bootstrap-daterangepicker-rails'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 
+# braintree payment
+gem 'braintree'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'launchy'
