@@ -53,7 +53,7 @@ class User::UsersController < Clearance::UsersController
 
   def check_user
     unless User.find(params[:id]) == current_user
-      flash[:warning] = 'Y U DO DIS'
+      flash[:warning] = 'Unauthorized access'
       redirect_to '/'
     end
   end

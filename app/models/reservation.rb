@@ -6,6 +6,7 @@ class Reservation < ActiveRecord::Base
   validates :user_id, presence: true
   validates :pax, inclusion: { in: (1..16) }
   validate :booking_dates
+  # validate :if_own_listing
 
   def dates
   end
@@ -31,4 +32,9 @@ class Reservation < ActiveRecord::Base
     errors.add(:check_out_date, ' has been taken') unless listing.reservations.where('? >= check_in_date AND ? <= check_out_date',
       check_out_date, check_out_date).empty?
   end
+
+  # def if_own_listing
+  #   listing = Listing.find(listing_id)
+  #   errors.add(:user_id, ' is your own id!') if listing.user.id == user_id
+  # end
 end
