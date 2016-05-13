@@ -24,13 +24,15 @@
 			</tr>
 			<tr>
 				<th>Payment</th>
-				<td>: <%= r.payment.nil? ? 'Pending' : 'Done' %></td>
+				<td>: <%= r.payment ? 'Done' : 'Pending' %></td>
 			</tr>
 			<tr>
 				<td><%= link_to 'Show', user_reservation_path(current_user, r) %>
+				<% unless r.payment %>
 				| <%= link_to 'Edit', edit_user_reservation_path(current_user, r) %>
 				| <%= link_to 'Destroy', user_reservation_path(current_user, r), method: :delete,
 				data: { confirm: 'Are you sure?' } %></td>
+				<% end %>
 			</tr>
 		<% end %>
 	</table>
