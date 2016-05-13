@@ -3,9 +3,9 @@ class Public::ReservationsController < ApplicationController
     @listing = Listing.find(reservation_params[:listing_id])
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
-      ReservationJob.perform_later(current_user, @listing.user, @reservation.id)
-      flash[:success] = 'Reservation has been made'
-      redirect_to user_reservations_path(current_user)
+      # ReservationMailer.reservation_email(current_user, @listing.user, @reservation.id).deliver_now
+      # ReservationJob.perform_later(current_user, @listing.user, @reservation.id)
+      redirect_to new_reservation_payment_path(@reservation)
     else
       render 'public/listings/show'
     end

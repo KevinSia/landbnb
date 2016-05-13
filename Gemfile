@@ -45,6 +45,9 @@ gem 'bootstrap-daterangepicker-rails'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 
+# braintree payment
+gem 'braintree'
+
 # background job
 gem 'sidekiq'
 

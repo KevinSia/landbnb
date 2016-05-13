@@ -23,6 +23,10 @@
 				<td>: <%= r.price %></td>
 			</tr>
 			<tr>
+				<th>Payment</th>
+				<td>: <%= r.payment.nil? ? 'Pending' : 'Done' %></td>
+			</tr>
+			<tr>
 				<td><%= link_to 'Show', user_reservation_path(current_user, r) %>
 				| <%= link_to 'Edit', edit_user_reservation_path(current_user, r) %>
 				| <%= link_to 'Destroy', user_reservation_path(current_user, r), method: :delete,

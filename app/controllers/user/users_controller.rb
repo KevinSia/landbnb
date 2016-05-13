@@ -2,6 +2,7 @@ class User::UsersController < Clearance::UsersController
 
   before_action :require_login, except: [:create]
   before_action :check_user, only: [:edit, :update]
+
   def show
     @user = User.find(params[:id])
   end

@@ -1,2 +1,17 @@
 <h2>Show reservation</h2>
 <p>Reservation details, listing detail and payment details goes here</p>
+Payment:
+<% if payment = @reservation.payment %>
+	<span class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Details
+	    <span class="caret"></span></a>
+	    <ul class="dropdown-menu" style='width: 100px;'>
+				<li> Payment made at:</li>
+				<li> - <%= payment.created_at.strftime('%d/%m/%Y') %></li>
+	    	<li> Amount: </li>
+	    	<li> - <%= @reservation.price %></li>
+	    </ul>
+  </span>
+<% else %>
+	Pending (<%= link_to 'Proceed to payment', new_reservation_payment_path(@reservation) %>)
+<% end %>
