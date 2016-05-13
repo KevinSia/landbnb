@@ -4,6 +4,7 @@
 	  <title>LandBnB</title>
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
@@ -22,8 +23,14 @@
 						<% if signed_in? %>
 							<li><%= link_to 'Create new listing', new_user_listing_path(current_user) %></li>
 							<li><%= link_to 'See all listings', listings_path%></li>
-							<li><%= link_to 'My Reservations', user_reservations_path(current_user) %></li>
-			      	<li><%= link_to 'My Listings', user_listings_path(current_user) %></li>
+							<li class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" href="#">My History
+				        <span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+									<li><%= link_to 'My Reservations', user_reservations_path(current_user) %></li>
+					      	<li><%= link_to 'My Listings', user_listings_path(current_user) %></li>
+				        </ul>
+				      </li>
 			      	<li class="dropdown">
 				        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.first_name %>
 				        <span class="caret"></span></a>

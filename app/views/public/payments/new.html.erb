@@ -1,0 +1,49 @@
+<h2 class='text-center'>Payment page</h2>
+
+<% if @errors %>
+	<div class='alert alert-danger'>
+	Error:
+	<% @errors.each do |error| %>
+		<%= error %>,
+	<% end %>
+	</div>
+<% end %>
+
+<div class="container well well-lg">
+<h3 class='text-center'>Your reservation details are as below</h3>
+	<div class='col-md-10 col-md-offset-1 text-left'>
+		<%= form_for [@reservation, Payment.new] do |p| %>
+			<div>
+				<%= p.label :check_in_date %>:
+				<%= @reservation.check_in_date %>
+			</div>
+			<div>
+				<%= p.label :check_out_date %>:
+				<%= @reservation.check_out_date %>
+			</div>
+			<div>
+				<%= p.label :pax %>:
+				<%= @reservation.pax %>
+			</div>
+			<div>
+				<%= p.label :price %>:
+				RM<strong><%= @reservation.price %></strong>
+			</div>
+			<div>
+				<%= p.label :listing_booked %>:
+				<%= @reservation.listing.title %>
+			</div>
+			<div>
+				<%= p.label :listing_location %>:
+				<%= @reservation.listing.address %>
+			</div>
+			<div>
+				<%= p.label :details, 'Please enter your payment details below:' %>
+			  <div data-token="<%= @client_token %>" id="dropin"></div>
+			</div>
+			<div>
+				<%= p.submit 'Pay', class: 'btn btn-primary' %>
+			</div>
+		<% end %>
+	</div>
+</div>

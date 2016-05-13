@@ -2,7 +2,6 @@ class Reservation < ActiveRecord::Base
   belongs_to :listing
   belongs_to :user
   has_one :payment
-  has_one :paid_users, through: :payment
 
   validates :listing_id, presence: true
   validates :user_id, presence: true
@@ -25,7 +24,7 @@ class Reservation < ActiveRecord::Base
 
   def pax=(pax)
     super
-    self.price = pax.to_i * date_diff
+    self.price = listing.price_per_night * date_diff
   end
 
   def booking_dates

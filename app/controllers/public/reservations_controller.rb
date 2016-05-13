@@ -5,8 +5,7 @@ class Public::ReservationsController < ApplicationController
     if @reservation.save
       # ReservationMailer.reservation_email(current_user, @listing.user, @reservation.id).deliver_now
       # ReservationJob.perform_later(current_user, @listing.user, @reservation.id)
-      flash[:success] = 'Reservation has been made'
-      redirect_to user_reservations_path(current_user)
+      redirect_to new_reservation_payment_path(@reservation)
     else
       render 'public/listings/show'
     end
