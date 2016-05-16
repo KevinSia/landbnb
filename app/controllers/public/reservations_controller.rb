@@ -7,6 +7,7 @@ class Public::ReservationsController < ApplicationController
       # ReservationJob.perform_later(current_user, @listing.user, @reservation.id)
       redirect_to new_reservation_payment_path(@reservation)
     else
+      @reserve_dates = Reservation.reserve_dates
       render 'public/listings/show'
     end
   end
