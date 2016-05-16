@@ -2,7 +2,7 @@
 <%= f.input :title %>
 <%= f.input :country, label: "Country", collection: CountryStateSelect.countries_collection %>
 <%= f.input :state, CountryStateSelect.state_options(label: "State / Province", form: f, field_names: { :country => :country, :state => :home_state }) %>
-<%= f.input :city, CountryStateSelect.city_options(label: "City ", form: f, field_names: {  :state => :state, :city => :home_city } ) %>
+<%= f.input :city, CountryStateSelect.city_options(label: "City ", form: f, field_names: { :state => :state, :city => :home_city } ) %>
 <%= f.input :address %>
 <%= f.input :home_type, collection: Listing::HOME_TYPE, selected: Listing.home_types[f.object.home_type], prompt: 'Select home type' %>
 <%= f.input :room_type, collection: Listing::ROOM_TYPE, selected: Listing.room_types[f.object.room_type], prompt: 'Select room type' %>

@@ -1,7 +1,7 @@
 class User::ListingsController < ApplicationController
 
   before_action :find_and_check_user, except: [:show, :show_reservation]
-  before_action :find_listing, except: [:index, :new]
+  before_action :find_listing, except: [:index, :new, :create]
 
   def show_reservation
     @reservation = Reservation.find(params[:reservation_id])
@@ -18,6 +18,7 @@ class User::ListingsController < ApplicationController
   end
 
   def create
+    byebug
     @listing = @user.listings.new(listing_params)
 
     if @listing.save
@@ -29,6 +30,8 @@ class User::ListingsController < ApplicationController
   end
 
   def edit
+    @listing.country = CS.countries.key(@listing.country)
+    @listing.state = CS.states(@listing.country).key(@listing.state)
   end
 
   def update

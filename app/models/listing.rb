@@ -7,6 +7,8 @@ class Listing < ActiveRecord::Base
   has_many :tags, through: :listing_tags
   has_many :reservations
 
+  before_save :modify_country
+
   HOME_TYPE = [
     ['Apartment', '0'],
     ['House', '1'],
@@ -43,4 +45,8 @@ class Listing < ActiveRecord::Base
     @tag = Tag.find_by_name!(tag_name).listings
   end
 
+  def modify_country
+    self.state = CS.states(country)[state.to_sym] || state
+    self.country = CS.countries[country.to_sym] || country
+  end
 end

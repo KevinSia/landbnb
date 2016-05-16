@@ -38,4 +38,7 @@ class Reservation < ActiveRecord::Base
   #   listing = Listing.find(listing_id)
   #   errors.add(:user_id, ' is your own id!') if listing.user.id == user_id
   # end
+  def self.reserve_dates
+    self.pluck(:check_in_date, :check_out_date).map{ |x| x.map { |y| y.strftime('%d/%m/%Y') }}
+  end
 end

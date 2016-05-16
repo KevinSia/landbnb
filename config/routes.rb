@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root 'static#home'
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
@@ -28,8 +27,7 @@ Rails.application.routes.draw do
 
   scope module: 'public' do
     resources :listings, only: [:index, :show] do
-      resources :reservations, only: :create do
-      end
+      resources :reservations, only: :create
     end
 
     resources :reservations, only: [] do

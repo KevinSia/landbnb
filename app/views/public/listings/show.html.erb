@@ -69,6 +69,7 @@
 				<% end %>
 			</tr>
 		</table>
+		<div id='dates' data-dates='<%= @reserve_dates %>'></div>
 		<h2>BOOK NAOOOO !!</h2>
 		<%= simple_form_for [@listing, Reservation.new] do |f| %>
 			<%= f.input :listing_id, as: :hidden, input_html: { value: @listing.id } %>

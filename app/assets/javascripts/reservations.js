@@ -9,6 +9,19 @@ $(document).on('ready page:load', function() {
     // $('select').val()
     $('.book_price').html(price * date_diff);
   }
+  var reserveDates = $('#dates').data('dates').map(function(date_pair){
+    return moment.range(moment(date_pair[0], 'DD/MM/YYYY'), moment(date_pair[1], 'DD/MM/YYYY'))
+  })
+  debugger
+  var checkDate = function(date){
+    var within_date = false;
+    $.each(reserveDates, function(index, value){
+      if (value.contains(date)) {
+        return within_date = true;
+      }
+    })
+    return within_date
+  }
   calculatePrice();
 
   $("input[name='reservation[dates]']").daterangepicker({
@@ -20,7 +33,8 @@ $(document).on('ready page:load', function() {
     endDate: moment().add(1, 'days'),
     drops: 'up',
     autoApply: true,
-    autoUpdateInput: true
+    autoUpdateInput: true,
+    isInvalidDate: checkDate
     });
 
   $("input[name='reservation[dates]']").on('hide.daterangepicker', function(ev, picker) {

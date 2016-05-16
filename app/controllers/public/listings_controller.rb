@@ -5,6 +5,6 @@ class Public::ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @reserve_dates = Reservation.reserve_dates
   end
-
 end
