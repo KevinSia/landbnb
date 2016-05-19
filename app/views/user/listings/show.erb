@@ -49,7 +49,7 @@
 				<td>
 				<% if images = @listing.images %>
 					<% @listing.images.each do |image| %>
-						<%= image_tag(image.url) %>
+						<%= image_tag(image.normal.url) %>
 					<% end %>
 				</td>
 				<% else %>

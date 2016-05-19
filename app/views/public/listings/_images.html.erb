@@ -1,0 +1,35 @@
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <% @listing.images.count.times do |count| %>
+      <% if count == 0 %>
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <% else %>
+        <li data-target="#myCarousel" data-slide-to="<%= count %>"></li>
+      <% end %>
+    <% end %>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <% @listing.images.each.with_index do |image, index| %>
+      <% if index == 1 %>
+        <div class="item active">
+      <% else %>
+        <div class="item">
+      <% end %>
+        <%= image_tag(image.url) %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

@@ -1,4 +1,5 @@
 <% if @reservation && @reservation.errors.any? %>
+<!-- move to shared/error partial-->
 <div id="error_explanation">
 		<div class="alert alert-danger">
 			The form contains <%= pluralize(@reservation.errors.count, "error") %>.
@@ -60,8 +61,16 @@
 			<tr>
 				<% if images = @listing.images %>
 				<td>
-					<% @listing.images.each do |image| %>
-						<%= image_tag(image.url) %>
+					<% @listing.images.each.with_index do |image, index| %>
+						<button type="button" class="btn" data-toggle="modal" data-target="#listing-image-modal">
+						<% if index == 1 %>
+							<div class="item active">
+						<% else %>
+							<div class="item">
+						<% end %>
+								<%= image_tag(image.normal.url) %>
+							</div>
+						</button>
 					<% end %>
 				</td>
 				<% else %>
@@ -69,15 +78,23 @@
 				<% end %>
 			</tr>
 		</table>
-		<div id='dates' data-dates='<%= @reserve_dates %>'></div>
-		<h2>BOOK NAOOOO !!</h2>
-		<%= simple_form_for [@listing, Reservation.new] do |f| %>
-			<%= f.input :listing_id, as: :hidden, input_html: { value: @listing.id } %>
-			<%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-			<%= f.input :dates, label: 'Booking date', as: :string,  input_html: { class: "daterange" } %>
-			<%= f.input :pax, collection: 1..@listing.guest_number, selected: 1 %>
-			<p><strong>Price</strong>: RM<span class='book_price' id='<%= @listing.price_per_night %>'></span></p>
-			<%= f.button :submit, 'Book Nao', style: "display:inline; width: 100px;" %>
-		<% end %>
+		<%= render partial: 'public/listings/booking' %>
 	</div>
+</div>
+
+<div id="listing-image-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= render partial: 'public/listings/images' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

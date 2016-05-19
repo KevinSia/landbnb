@@ -151,3 +151,10 @@ footer {
 .daterangepicker td.disabled, .daterangepicker option.disabled {
     background-color: gainsboro;
 }
+
+#listing-image-modal {
+    .modal-content {
+        width: 1000px;
+        margin-left: -30%
+    }
+}

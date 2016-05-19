@@ -5,9 +5,9 @@
 		<div class='row'>
 			<div class='col-md-10 col-md-offset-1 text-center'>
 				Title: <%= l.title %>
-				Updated on: <%= l.updated_at %>
+				Updated on: <%= l.updated_at.strftime('%d/%m/%Y') %><br>
 				Tags: <%= raw tag_links(l.tags_list) %><br>
-				<%= link_to 'Show this listing', listing_path(l) %>
+				<%= link_to 'Show this listing', listing_path(l), class: 'btn btn-default' %><br>
 			</div>
 		</div>
 	<% end %>
